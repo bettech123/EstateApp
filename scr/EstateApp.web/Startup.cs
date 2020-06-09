@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Estate.Data.DatabaseContexts.AuthenticationDbContext;
 
 namespace EstateApp.web
 {
@@ -25,7 +26,7 @@ namespace EstateApp.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AuthenticationDbContext>(
-                options =>UseSqlServer(Configuration.GetConnectionStrings("AuthenticationConnection")))
+                options => options.UseSqlServer(Configuration.GetConnectionString("AuthenticationConnection")));
             services.AddControllersWithViews();
         }
 
